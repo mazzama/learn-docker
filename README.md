@@ -27,3 +27,17 @@
 1. `docker build .` : build new image from dockerfile
 2. Option `-t <projecName>` : build new image with tag 
  
+ ## Docker Compose
+ ### Create docker-compose.yml
+ ### Command
+ 1. `docker-compose up` : start the container
+ 2. `docker-compose up -d` : Launch the container in background
+ 3. `docker-compose up --build` : build and start container
+ 4. `docker-compose down` : stop containers 
+
+ ### Restart policies
+ Add `restart : 'type'` to `docker-compose.yml`
+ 1. `"no"` : never attempt to restart this container if it stops or crashes
+ 2. `always` : if this container stops for any reason, always attempt to restart it
+ 3. `on-failure` : only restart if the container stops with an error code
+ 4. `unless-stopped` : always restart unless we forcibly stop it
