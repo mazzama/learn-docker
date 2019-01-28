@@ -9,7 +9,9 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-          Hello there! The Angel from my nightmare. Shut up
+            Welcome to React App!
+            Bla bla bla
+            Hello
           </p>
           <a
             className="App-link"
