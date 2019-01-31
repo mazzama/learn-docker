@@ -11,6 +11,7 @@
 7. `docker kill <containerId>`
 8. `docker run -p <portIncomingrequest>:<portInsideContainer> <images>` : docker run with port mapping
 9. `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <imageId>`
+10  `docker system prune --volumes` : remove all unused volumes
 ### Multiple command
 1. `docker exec -it <containerId> <command>` (for example `redis-cli`): exec -> execute an additional command in a container,  it -> allow us to provide input to the container and get formatted output
 2. `docker exec -it <containerId> <sh/bash/zsh/powershell>` : execute command inside of a container
