@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Belajar Docker
 
-## Available Scripts
+## Docker Command
+### Basic Command
+1. `docker images` / `docker image ls` : Show all docker images
+2. `docker ps [`-a` / `--all`]` : show all created container
+3. `docker run <images>` : `docker create <imageName>`+ `docker run [containerId]` 
+4. `docker system prune` : remove all container + all dangling image + all build caches
+5. `docker logs <containerId>` : get logs from a container
+6. `docker stop <containerid>`
+7. `docker kill <containerId>`
+8. `docker run -p <portIncomingrequest>:<portInsideContainer> <images>` : docker run with port mapping
+9. `docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <imageId>`
+10  `docker system prune --volumes` : remove all unused volumes
+### Multiple command
+1. `docker exec -it <containerId> <command>` (for example `redis-cli`): exec -> execute an additional command in a container,  it -> allow us to provide input to the container and get formatted output
+2. `docker exec -it <containerId> <sh/bash/zsh/powershell>` : execute command inside of a container
 
-In the project directory, you can run:
+***
+## Create Docker Image
+### Create Dockerfile
+1. `FROM` : set the base image
+2. `WORKDIR` : sets the working directory.
+2. `COPY` : copies new files or directories to container.
+3. `RUN` : execute any commands in a new layer on top of the current image and commit the results
+4. `CMD` : provide defaults for an executing container 
 
-### `npm start`
+### Command
+1. `docker build .` : build new image from dockerfile
+2. Option `-t <projecName>` : build new image with tag 
+3. `docker build -f <filename>` : force docker-cli to build new image from custom dockerfile name
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***
+## Docker Compose
+### Create docker-compose.yml
+### Command
+1. `docker-compose up` : start the container
+2. `docker-compose up -d` : Launch the container in background
+3. `docker-compose up --build` : build and start container
+4. `docker-compose down` : stop containers 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Restart policies
+Add `restart : 'type'` to `docker-compose.yml`
+1. `"no"` : never attempt to restart this container if it stops or crashes
+2. `always` : if this container stops for any reason, always attempt to restart it
+3. `on-failure` : only restart if the container stops with an error code
+4. `unless-stopped` : always restart unless we forcibly stop it
+>>>>>>> b78f008e511a822ab42763525d3e047f67cc5b97
